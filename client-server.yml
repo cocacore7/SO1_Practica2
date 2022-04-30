@@ -23,7 +23,6 @@ spec:
         env:
         - name: GRCP_SERVER
           value: "grcp-host:50051"
-      
       - name: server
         image: cocacore7/server_node_201908335
         ports:
