@@ -1,16 +1,18 @@
 // GENERAL CLUSTER
-gcloud container clusters get-credentials proyecto3 --zone=us-central1-c
-kubectl create ns squidgame
+gcloud container clusters get-credentials practica2 --zone=us-central1-c
+kubectl create ns practica2-201908335
 kubectl get nodes
 
 
 // RABBIT
-kubectl apply -n squidgame -f rabbit-rbac.yaml
-kubectl apply -n squidgame -f rabbit-secret.yaml
-kubectl apply -n squidgame -f rabbit-configmap.yaml
-kubectl apply -n squidgame -f rabbit-statefulset.yaml
+kubectl apply -n practica2-201908335 -f rabbit-rbac.yaml
+kubectl apply -n practica2-201908335 -f rabbit-secret.yaml
+kubectl apply -n practica2-201908335 -f rabbit-configmap.yaml
+kubectl apply -n practica2-201908335 -f rabbit-statefulset.yaml
+kubectl apply -n practica2-201908335 -f client-server.yml
+kubectl apply -n practica2-201908335 -f subscriber.yml
 
-kubectl -n squidgame port-forward rabbitmq-0 8080:5672
+kubectl -n practica2-201908335 port-forward rabbitmq-0 8080:5672
 
 rabbitmqctl set_policy ha-fed \
     ".*" '{"federation-upstream-set":"all", "ha-sync-mode":"automatic", "ha-mode":"nodes", "ha-params":["rabbit@rabbitmq-0.rabbitmq.rabbits.svc.cluster.local","rabbit@rabbitmq-1.rabbitmq.rabbits.svc.cluster.local","rabbit@rabbitmq-2.rabbitmq.rabbits.svc.cluster.local"]}' \

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: subscriber-deployment
-  namespace: practica2_201908335
+  namespace: practica2-201908335
   labels:
     app: subscriber
 spec:
@@ -21,4 +21,4 @@ spec:
         image: cocacore7/suscriber_go_rabbit_201908335
         env:
         - name: ADD_RABBIT
-          value: rabbitmq-0.rabbitmq.practica2_201908335.svc.cluster.local:5672
+          value: rabbitmq-0.rabbitmq.practica2-201908335.svc.cluster.local:5672
